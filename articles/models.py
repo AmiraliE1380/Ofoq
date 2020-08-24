@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Article(models.Model):
+    author = models.CharField(max_length=100)
     title = models.CharField(max_length=200)
     pub_date = models.DateField('تاریخ انتشار:')
 
@@ -10,6 +11,7 @@ class Article(models.Model):
 
 
 class Comment(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
     reply_id = models.IntegerField(default=-1)
     username = models.CharField(max_length=100)
     content = models.CharField(max_length=500)
